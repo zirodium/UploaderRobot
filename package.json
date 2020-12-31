@@ -1,0 +1,26 @@
+{
+  "name": "UploaderRobot",
+  "version": "1.0.0",
+  "description": "![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000) [![Twitter: alirezasaeedix](https://img.shields.io/twitter/follow/alirezasaeedix.svg?style=social)](https://twitter.com/alirezasaeedix)",
+  "main": "upload.js",
+  "dependencies": {
+    "mongoose": "^5.11.9",
+    "node-telegram-bot-api": "^0.51.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "bot": "node upload.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Enekaas/UploaderRobot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Enekaas/UploaderRobot/issues"
+  },
+  "homepage": "https://github.com/Enekaas/UploaderRobot#readme"
+}
