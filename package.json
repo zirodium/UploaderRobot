@@ -4,8 +4,10 @@
   "description": "![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000) [![Twitter: alirezasaeedix](https://img.shields.io/twitter/follow/alirezasaeedix.svg?style=social)](https://twitter.com/alirezasaeedix)",
   "main": "upload.js",
   "dependencies": {
+    "lodash": "^4.17.20",
     "mongoose": "^5.11.9",
-    "node-telegram-bot-api": "^0.51.0"
+    "node-telegram-bot-api": "^0.51.0",
+    "redis": "^3.0.2"
   },
   "devDependencies": {
     "eslint": "^7.17.0",
