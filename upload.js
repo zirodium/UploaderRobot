@@ -16,11 +16,11 @@ const key = require('./src/keys')
 //const Member = require('./src/models/member');
 
 // setup datas
-const admins = [1044952027]
-const username = 'nodenlpbot' // => bot username without @
-const token = '1478531064:AAG87eC08hBcYKh3wC-kQrU71lmBY2nZjYg' // => bot token
-const chid = '-1001491974960' // => channel id
-const chlink = 'https://t.me/joinchat/WO27MPvl4_waFtiq' // => channel link
+const admins = []
+const username = '' // => bot username without @
+const token = '' // => bot token
+const chid = '' // => channel id
+const chlink = '' // => channel link
 
 // setup bot
 const bot = new TL(token, {
