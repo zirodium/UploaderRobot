@@ -21,10 +21,6 @@ const bot = new TL(token, {
   polling: true,
 });
 
-bot.setWebHook(
-  `https://example.com/bot${token}`
-);
-
 r.on("error", (err) => {
   console.error(err);
 });
@@ -71,6 +67,11 @@ bot.onText(/\/start (.+)/, async (msg, match) => {
             .find((f) => f.id === id);
           await bot.sendPhoto(msg.chat.id, file.file_id, {
             caption: file.caption,
+	reply_markup: {
+		inline_keyboard: [
+			[{ text: pubChnlName, url: pubChnl }]
+		]
+	}
           });
         });
       } else if (id.startsWith("vi")) {
@@ -81,6 +82,11 @@ bot.onText(/\/start (.+)/, async (msg, match) => {
             .find((f) => f.id === id);
           await bot.sendVideo(msg.chat.id, file.file_id, {
             caption: file.caption,
+	reply_markup: {
+		inline_keyboard: [
+			[{ text: pubChnlName, url: pubChnl }]
+		]
+	}
           });
         });
       } else {
@@ -191,7 +197,7 @@ bot.on("message", async (msg) => {
           case "fwd":
             r.smembers("members", async (er, re) => {
               if (er) console.error(er);
-              const chunked = chunk(re, 10);
+              const chunked = chunk(re, 20);
               for (let i = 0; i < chunked.length; i++) {
                 const item = chunked[i];
                 setTimeout(() => {
@@ -203,14 +209,18 @@ bot.on("message", async (msg) => {
                         msg.message_id
                       );
                     } catch (e) {
-                      console.error(e.code, e.message);
                       r.sadd('usersBlockedBot', userId)
+                      r.srem('members', userId)
                     }
                   });
                 }, 1000 * i);
               }
               await bot.sendMessage(msg.chat.id, `پیام شما با موفقیت ارسال شد`);
               r.set(`step:${msg.from.id}`, "null");
+              r.smembers('usersBlockedBot', async (e, u) => {
+                  if (e) console.error(e);
+                  await bot.sendMessage(msg.chat.id, `✅تعداد ${u.length || 0} کاربر رباتو بلاک کرده بودن که من اونارو از لیست ممبرا حذف کردم :)`)
+              })
             });
             break;
         }
@@ -237,6 +247,7 @@ bot.on("callback_query", async (cb) => {
         }
       });*/
               let isJoined = await isJoin(chid, from)
+if (cb.data == 'ozviat'){
               if (!isJoined){
                   await bot.sendMessage(chatid, 'شما هنوز توی چنلمون جوین نشدی\nبعد از جوین شدن روی دکمه عضو شدم کلیک کن', {
                       reply_markup: {
@@ -283,6 +294,7 @@ bot.on("callback_query", async (cb) => {
                       }
                   })
               }
+ }
     if (admins.includes(cb.from.id)) {
         switch(cb.data){
         case "amar":
